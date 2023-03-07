@@ -27,6 +27,9 @@ public class SnakeGame implements ActionListener, KeyListener {
 	 * 
 	 * 3. Create a Direction enum with UP, DOWN, LEFT, and RIGHT values.
 	 */
+	enum Direction{
+		UP, DOWN, LEFT, RIGHT;
+	}
 
 	public static final Color BORDER_COLOR = Color.WHITE;
 	public static final Color BACKGROUND_COLOR = Color.BLACK;
@@ -117,6 +120,23 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * Hint: KeyEvent.VK_UP.
 		 */
 
+		switch(e.KEY_PRESSED) {
+		case KeyEvent.VK_UP:
+			snake.setDirection(UP);
+			break;
+		case KeyEvent.VK_DOWN:
+			snake.setDirection(DOWN);
+			break;
+		case KeyEvent.VK_RIGHT:
+			snake.setDirection(RIGHT);
+			break;
+		case KeyEvent.VK_LEFT:
+			snake.setDirection(LEFT);
+			break;
+		default:
+			System.out.println("direction is broken");
+			break;
+		}
 	}
 
 	private void randomizeFoodLocation() {
@@ -157,18 +177,23 @@ public class SnakeGame implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 
 		// Call the snake's update method.
-
+		snake.update();
 		/*
 		 * If the snake's head is colliding with its own body or out of bounds call the
 		 * gameOver method.
 		 */
-
-
+		if(snake.isHeadCollidingWithBody() || snake.isOutOfBounds()) {
+			gameOver();
+		}
+		
 		/*
 		 * If the location of the snake's head is equal to the location of the food,
 		 * feed the snake and randomize the food location.
 		 */
-
+		if(snake.getHeadLocation().equals(foodLocation)) {
+			snake.feed();
+			randomizeFoodLocation();
+		}
 		panel.repaint();
 	}
 }

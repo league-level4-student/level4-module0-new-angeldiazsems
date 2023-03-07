@@ -27,12 +27,28 @@ public class IntroToEnums {
 
 		// 3. Create an array of StatesOfMatter with all the values using .values().
 		// Hint: Use "StatesOfMatter." as if it were a static method.
+		StatesOfMatter[] s = new StatesOfMatter[3];
 
 		// 4. Ask the user for a state of matter.
-
+		String input = JOptionPane.showInputDialog("type a state of matter");
 		// 5. Iterate through the array and find what the user entered.
 		// Hint: .name() or .toString
-
+		for(int i = 0; i < s.length; i++) {
+			switch (input) {
+			case "solid":
+				System.out.println(s[i].ordinal());
+				break;
+			case "liquid":
+				System.out.println(s[i].ordinal());
+				break;
+			case "gas": 
+				System.out.println(s[i].ordinal());
+				break;
+			default: 
+				System.out.println("wrong type");
+				break;
+			}
+		}
 		// 6. Print outs its ordinal(order in the enum list)
 		// Hint: .ordinal()
 
