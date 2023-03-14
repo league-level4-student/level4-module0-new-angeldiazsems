@@ -27,27 +27,18 @@ public class IntroToEnums {
 
 		// 3. Create an array of StatesOfMatter with all the values using .values().
 		// Hint: Use "StatesOfMatter." as if it were a static method.
-		StatesOfMatter[] s = new StatesOfMatter[3];
+		StatesOfMatter[] s = new StatesOfMatter[StatesOfMatter.values()];
 
 		// 4. Ask the user for a state of matter.
 		String input = JOptionPane.showInputDialog("type a state of matter");
 		// 5. Iterate through the array and find what the user entered.
 		// Hint: .name() or .toString
-		for(int i = 0; i < s.length; i++) {
-			switch (input) {
-			case "solid":
+		for (int i = 0; i < s.length; i++) {
+			if (input.equals(s[i].toString())) {
 				System.out.println(s[i].ordinal());
-				break;
-			case "liquid":
-				System.out.println(s[i].ordinal());
-				break;
-			case "gas": 
-				System.out.println(s[i].ordinal());
-				break;
-			default: 
-				System.out.println("wrong type");
-				break;
+
 			}
+
 		}
 		// 6. Print outs its ordinal(order in the enum list)
 		// Hint: .ordinal()
@@ -57,6 +48,7 @@ public class IntroToEnums {
 
 		// 8. Give it a default value of the temperature each state occurs in water.
 		// Hint: Gas = 100, Liquid(room temp) = 25.55, Solid = 0
+		int f = StatesOfMatter.GAS.celsiusTemp;
 
 		// Example
 		// enum Months{
@@ -74,11 +66,30 @@ public class IntroToEnums {
 		// Hint: Return the conversion: F = (C * 9/5) + 32
 
 		// 10. Create a variable of the StatesOfMatter type and initialize it randomly.
-
+		Random ran = new Random();
+		int r = ran.nextInt(s.length);
+		StatesOfMatter state = s[r];
 		// 11. Print outs both of its temperatures.
+		int t = state.celsiusTemp;
 		
+		System.out.println(
+				state + ", celsius temp : " + state.celsiusTemp + ", faherheit temp : " + state.convertToFahrenheit(t));
 		// 11. Create a switch statement that switches on the variable you created.
 		// Note: When creating the cases, you can omit the "StatesOfMatter."
+		switch (state) {
+		case GAS:
+			System.out.println("SODA");
+			break;
+		case LIQUID:
+			System.out.println("APPLE JUICE");
+			break;
+		case SOLID:
+			System.out.println("MEAT");
+			break;
+		default:
+			System.out.println("something went wrong");
+			break;
+		}
 
 		// 12. For each case, print your favorite food or drink that uses that state.
 		// e.g. Gas/Boiling for Pasta, Solid/Ice for Popsicles, Liquid for Soda

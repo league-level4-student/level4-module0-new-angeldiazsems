@@ -122,16 +122,16 @@ public class SnakeGame implements ActionListener, KeyListener {
 
 		switch(e.KEY_PRESSED) {
 		case KeyEvent.VK_UP:
-			snake.setDirection(UP);
+			snake.setDirection(Direction.UP);
 			break;
 		case KeyEvent.VK_DOWN:
-			snake.setDirection(DOWN);
+			snake.setDirection(Direction.DOWN);
 			break;
 		case KeyEvent.VK_RIGHT:
-			snake.setDirection(RIGHT);
+			snake.setDirection(Direction.RIGHT);
 			break;
 		case KeyEvent.VK_LEFT:
-			snake.setDirection(LEFT);
+			snake.setDirection(Direction.LEFT);
 			break;
 		default:
 			System.out.println("direction is broken");
@@ -145,7 +145,11 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * Create a new Location object that is set to a random x and y values between 0
 		 * and the WIDTH and HEIGHT variables respectively.
 		 */
-
+		Random ran = new Random();
+		int x = ran.nextInt(WIDTH);
+		int y = ran.nextInt(HEIGHT);
+		Location l = new Location(x,y);
+		
 
 		/*
 		 * Set the foodLocation equal to the Location object you just created.
@@ -153,17 +157,30 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * Hint: Use the snake's isLocationOnSnake method to make sure you don't put the
 		 * food on top of the snake.
 		 */
-
+		if(!snake.isLocationOnSnake(l)) {
+			foodLocation = l;
+			
+		}
+		else {
+			randomizeFoodLocation();
+		}
 	}
 
 	private void gameOver() {
 
 		// Stop the timer.
-
+		timer.stop();
 		// Tell the user their snake is dead.
-
+		String input = JOptionPane.showInputDialog("yor snake is dead, do you want to play again?");
 		// Ask the user if they want to play again.
-
+		if(input.equals("yes")) {
+			snake.resetLocation();
+			randomizeFoodLocation();
+			timer.restart();
+		}
+		else {
+			System.exit(0);
+		}
 
 		/*
 		 * If the user wants to play again, call the snake's resetLocation method and
