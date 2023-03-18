@@ -1,24 +1,21 @@
 package _03_Intro_to_Enums;
 
 enum StatesOfMatter {
-SOLID(0), LIQUID(25.55), GAS(100);
+SOLID, LIQUID, GAS;
 
-int celsiusTemp;
 
-public void setValue(int celsiusTemp) {
+private double celsiusTemp;
+
+public void setTemp(double celsiusTemp) {
 	this.celsiusTemp = celsiusTemp;
 }
 
+public double getCelsiusTemp() {
+	return celsiusTemp;
 
-
-public int getTemp(int celsuisTemp) {
-	this.celsiusTemp = celsuisTemp;
-	
-	
-	
 }
 
-public int convertToFahrenheit(int celsiusTemp){
+public double convertToFahrenheit(double celsiusTemp){
 	return (celsiusTemp *9/5) +32;
 }
 

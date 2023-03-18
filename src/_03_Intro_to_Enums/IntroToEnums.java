@@ -1,5 +1,6 @@
 package _03_Intro_to_Enums;
 
+import java.awt.Taskbar.State;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -27,15 +28,21 @@ public class IntroToEnums {
 
 		// 3. Create an array of StatesOfMatter with all the values using .values().
 		// Hint: Use "StatesOfMatter." as if it were a static method.
-		StatesOfMatter[] s = new StatesOfMatter[StatesOfMatter.values()];
+		StatesOfMatter[] s = new StatesOfMatter[3];
+		int count = 0;
+		for(StatesOfMatter state : StatesOfMatter.values()) {
+			s[count] = state;
+			count++;
+		}
+		//NOT DONE!!!!!!^^^^^.values
 
 		// 4. Ask the user for a state of matter.
-		String input = JOptionPane.showInputDialog("type a state of matter");
+		String input = JOptionPane.showInputDialog("type a state of matter (all caps)");
 		// 5. Iterate through the array and find what the user entered.
 		// Hint: .name() or .toString
 		for (int i = 0; i < s.length; i++) {
 			if (input.equals(s[i].toString())) {
-				System.out.println(s[i].ordinal());
+				System.out.println(s[i]+"'s order in the enum list is : "+s[i].ordinal());
 
 			}
 
@@ -48,7 +55,9 @@ public class IntroToEnums {
 
 		// 8. Give it a default value of the temperature each state occurs in water.
 		// Hint: Gas = 100, Liquid(room temp) = 25.55, Solid = 0
-		int f = StatesOfMatter.GAS.celsiusTemp;
+		StatesOfMatter.GAS.setTemp(100);
+		StatesOfMatter.SOLID.setTemp(0);
+		StatesOfMatter.LIQUID.setTemp(25.55);
 
 		// Example
 		// enum Months{
@@ -70,12 +79,13 @@ public class IntroToEnums {
 		int r = ran.nextInt(s.length);
 		StatesOfMatter state = s[r];
 		// 11. Print outs both of its temperatures.
-		int t = state.celsiusTemp;
+		double temp = state.getCelsiusTemp();
 		
 		System.out.println(
-				state + ", celsius temp : " + state.celsiusTemp + ", faherheit temp : " + state.convertToFahrenheit(t));
+				state + ", occurs in water at: " + temp + " degrees celsius, and " + state.convertToFahrenheit(temp)+" degrees farenheit");
 		// 11. Create a switch statement that switches on the variable you created.
 		// Note: When creating the cases, you can omit the "StatesOfMatter."
+		System.out.println("My favorite food/drink from "+state+" is: ");
 		switch (state) {
 		case GAS:
 			System.out.println("SODA");

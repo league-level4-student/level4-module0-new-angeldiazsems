@@ -137,6 +137,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 			System.out.println("direction is broken");
 			break;
 		}
+
 	}
 
 	private void randomizeFoodLocation() {
@@ -159,7 +160,6 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 */
 		if(!snake.isLocationOnSnake(l)) {
 			foodLocation = l;
-			
 		}
 		else {
 			randomizeFoodLocation();
@@ -207,7 +207,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * If the location of the snake's head is equal to the location of the food,
 		 * feed the snake and randomize the food location.
 		 */
-		if(snake.getHeadLocation().equals(foodLocation)) {
+		if(snake.getHeadLocation() == foodLocation) {
 			snake.feed();
 			randomizeFoodLocation();
 		}
